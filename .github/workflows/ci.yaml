@@ -8,6 +8,8 @@ on:
     branches:
       - main
 
+env:
+  test_secret: ${{ secrets.TEST_SECRET }}
 
 jobs:
   phpunit:
@@ -22,7 +24,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Set up PHP
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@
         with:
           php-version: ${{ matrix.php-version }}
           extensions: mbstring, dom, curl
