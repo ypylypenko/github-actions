@@ -1,7 +1,7 @@
 ### 🔗 Useful links
 
-- JIRA:
-- Preview: https://pr-{PR_NUMBER}.cleanmymac.macpaw.dev
+- JIRA: [JIRA_TICKET](https://jira.macpaw.com/browse/JIRA_TICKET)
+- Preview: https://pr-[PR_NUMBER].cleanmymac.macpaw.dev
 
 ___
 ### 🧪 What to test
