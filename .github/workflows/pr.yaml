@@ -26,7 +26,9 @@ jobs:
       - name: Update Pull Request Description
         run: |
           PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
-            MESSAGE="${{ steps.read-message.outputs.message }}"
+          MESSAGE="${{ steps.read-message.outputs.message }}"
+
+          echo $MESSAGE
 
           # Update pull request description using GitHub API
           curl -X PATCH \
