@@ -14,7 +14,7 @@ jobs:
       - name: Read message from file
         id: read-message
         run: |
-          MESSAGE=$(cat .githgub/pull_request_template.md)
+          MESSAGE=$(cat .github/pull_request_template.md)
           echo "::set-output name=message::$MESSAGE"
       #      - name: Checkout repository
       #        uses: actions/checkout@v2
