@@ -1,7 +1,6 @@
 ### 🔗 Useful links
 
 - JIRA:
-
 - Preview: https://pr-{PR_NUMBER}.cleanmymac.macpaw.dev
 
 ___
