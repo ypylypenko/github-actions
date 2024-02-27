@@ -18,6 +18,6 @@ jobs:
         uses: nefrob/pr-description@v1.1.1
         with:
           content: ${{ github.event.pull_request.number }}
-          regex: "[PR_NUMBER]"
+          regex: "{PR_NUMBER}"
           regexFlags: ims
           token: ${{ secrets.GH_TOKEN }}
