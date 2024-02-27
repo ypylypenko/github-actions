@@ -2,7 +2,7 @@
 
 - JIRA:
 
-- Preview: https://pr-PR_NUMBER.cleanmymac.macpaw.dev
+- Preview: https://pr-{PR_NUMBER}{/PR_NUMBER}.cleanmymac.macpaw.dev
 
 <!-- start regex match -->
 Anything in between these comments will be replaced by a push to the PR.

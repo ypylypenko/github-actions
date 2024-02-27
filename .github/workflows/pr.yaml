@@ -17,7 +17,7 @@ jobs:
       - name: Update PR Description
         uses: nefrob/pr-description@v1.1.1
         with:
-          content: "<!-- start regex match -->New content!<!-- end regex match -->"
-          regex: "<!-- start regex match -->.*?<!-- end regex match -->"
+          content: "{PR_NUMBER}11111{/PR_NUMBER}"
+          regex: "{PR_NUMBER}.*?{/PR_NUMBER}"
           regexFlags: ims
           token: ${{ secrets.GH_TOKEN }}
