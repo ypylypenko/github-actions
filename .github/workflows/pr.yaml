@@ -11,8 +11,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-#      - name: Checkout repository
-#        uses: actions/checkout@v2
+      - name: Read message from file
+        id: read-message
+        run: |
+          MESSAGE=$(cat .githgub/pull_request_template.md)
+          echo "::set-output name=message::$MESSAGE"
+      #      - name: Checkout repository
+      #        uses: actions/checkout@v2
       - name: Update Pull Request Description
         run: |
           PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
