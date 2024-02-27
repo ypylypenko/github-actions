@@ -19,13 +19,13 @@ jobs:
           MESSAGE=$(cat ./.github/pull_request_template.md)
           PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
           MESSAGE="${MESSAGE_TEMPLATE/PR_NUMBER/$PR_NUMBER}"
-          echo "message=$MESSAGE" >> $GITHUB_OUTPUT
+          echo "::set-output name=message::$MESSAGE"
       #      - name: Checkout repository
       #        uses: actions/checkout@v2
       - name: Update Pull Request Description
         run: |
           PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
-          MESSAGE="${{ steps.read-message.outputs.message }}"
+            MESSAGE="${{ steps.read-message.outputs.message }}"
 
           # Update pull request description using GitHub API
           curl -X PATCH \
