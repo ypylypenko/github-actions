@@ -19,16 +19,12 @@ jobs:
         run: |
           MESSAGE=$(cat ./.github/pull_request_template.md)
           PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
-          echo "$MESSAGE"
-          echo "$PR_NUMBER"
           echo "message=$MESSAGE" >> $GITHUB_OUTPUT
 
       - name: Update Pull Request Description
         run: |
           PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
           MESSAGE="${{ steps.read-message.outputs.message }}"
-
-          echo $MESSAGE
 
           # Update pull request description using GitHub API
           curl -X PATCH \
