@@ -4,7 +4,7 @@
 - JIRA:
 
 <!-- Change 000 to PR number -->
-- Preview: https://pr-000.cleanmymac.macpaw.dev
+- Preview: https://pr-PR_NUMBER.cleanmymac.macpaw.dev
 
 ___
 ### 🧪 What to test

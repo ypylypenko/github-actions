@@ -17,6 +17,8 @@ jobs:
         id: read-message
         run: |
           MESSAGE=$(cat ./.github/pull_request_template.md)
+          PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
+          MESSAGE="${MESSAGE_TEMPLATE/PR_NUMBER/$PR_NUMBER}"
           echo "::set-output name=message::$MESSAGE"
       #      - name: Checkout repository
       #        uses: actions/checkout@v2
