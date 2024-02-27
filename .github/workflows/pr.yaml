@@ -19,5 +19,6 @@ jobs:
         with:
           content: ${{ github.event.pull_request.number }}
           regex: "{PR_NUMBER}.*?{/PR_NUMBER}"
+          appendContentOnMatchOnly: true
           regexFlags: ims
           token: ${{ secrets.GH_TOKEN }}
