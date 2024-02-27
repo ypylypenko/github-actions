@@ -5,6 +5,7 @@ on:
     types:
       - opened
       - synchronize
+      - reopened
 
 jobs:
   update-description:
@@ -14,11 +15,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Update PR Description
+      - name: Update PR Number in Description
         uses: nefrob/pr-description@v1.1.1
         with:
           content: ${{ github.event.pull_request.number }}
-          regex: "{PR_NUMBER}.*?{/PR_NUMBER}"
+          regex: "{PR_NUMBER}"
           appendContentOnMatchOnly: true
           regexFlags: ims
           token: ${{ secrets.GH_TOKEN }}
