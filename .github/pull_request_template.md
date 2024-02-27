@@ -2,7 +2,7 @@
 
 - JIRA:
 
-- Preview: https://pr-{PR_NUMBER}{/PR_NUMBER}.cleanmymac.macpaw.dev
+- Preview: https://pr-{PR_NUMBER}.cleanmymac.macpaw.dev
 ___
 ### 🧪 What to test
 <!-- describe changes that should be tested -->
