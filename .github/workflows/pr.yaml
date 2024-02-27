@@ -21,6 +21,8 @@ jobs:
           PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
           MESSAGE="${MESSAGE_TEMPLATE/PR_NUMBER/$PR_NUMBER}"
 
+          echo "${MESSAGE}"
+
           # Update pull request description using GitHub API
           curl -X PATCH \
             -H "Authorization: Bearer ${{ secrets.GH_TOKEN }}" \
