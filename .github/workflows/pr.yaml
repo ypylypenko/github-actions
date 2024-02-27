@@ -14,10 +14,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Update PR Description
-        uses: nefrob/pr-description@v1.1.1
-        with:
-          content: ${{ github.event.pull_request.number }}
-          regex: "{PR_NUMBER}"
-          regexFlags: ims
-          token: ${{ secrets.GH_TOKEN }}
+      - name: Read and replace content
+        run: |
+          PR_DESCRIPTION_FILE=".github/pull_request_template.md"  # Update the path accordingly
+          OLD_CONTENT="[PR_NUMBER]"
+          NEW_CONTENT="11111"
+
+          # Read the current pull request description
+          PR_DESCRIPTION=$(cat $PR_DESCRIPTION_FILE)
+
+          # Use sed to replace old content with new content
+          UPDATED_DESCRIPTION=$(echo "$PR_DESCRIPTION" | sed "s/$OLD_CONTENT/$NEW_CONTENT/g")
+
+          # Update the pull request description using GitHub API
+          curl -X PATCH \
+            -H "Authorization: Bearer ${{ secrets.GH_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            -d "{\"body\": \"$UPDATED_DESCRIPTION\"}" \
+            "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}"
