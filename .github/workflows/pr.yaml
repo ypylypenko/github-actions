@@ -19,7 +19,7 @@ jobs:
         run: |
           MESSAGE=$(cat ./.github/pull_request_template.md)
           PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
-          echo "message=$MESSAGE" >> $GITHUB_OUTPUT
+          echo "message=${MESSAGE}" >> $GITHUB_OUTPUT
 
       - name: Update Pull Request Description
         run: |
