@@ -1,9 +1,7 @@
 ### 🔗 Useful links
 
-<!-- Add JIRA link or just type CMF-000 or PLT-000 (change 000 to your team's task number) -->
 - JIRA:
 
-<!-- Change 000 to PR number -->
 - Preview: https://pr-PR_NUMBER.cleanmymac.macpaw.dev
 
 ___
