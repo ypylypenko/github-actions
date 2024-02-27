@@ -14,18 +14,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Read and replace content
+      - name: Read and replace values in PR description
         run: |
           PR_DESCRIPTION_FILE=".github/pull_request_template.md"  # Update the path accordingly
-          OLD_CONTENT="[PR_NUMBER]"
-          NEW_CONTENT="11111"
+          PLACEHOLDER_OLD="[PR_NUMBER]"  # Update with the placeholder to replace
+          PLACEHOLDER_NEW="1111"  # Update with the new value
 
           # Read the current pull request description
           PR_DESCRIPTION=$(cat $PR_DESCRIPTION_FILE)
 
-          # Use sed to replace old content with new content
-          UPDATED_DESCRIPTION=$(echo "$PR_DESCRIPTION" | sed "s/$OLD_CONTENT/$NEW_CONTENT/g")
+          # Use sed to replace the placeholder with the new value
+          UPDATED_DESCRIPTION=$(echo "$PR_DESCRIPTION" | sed "s/$PLACEHOLDER_OLD/$PLACEHOLDER_NEW/g")
 
+          # Escape double quotes in the description for proper JSON formatting
           ESCAPED_DESCRIPTION=$(echo "$UPDATED_DESCRIPTION" | jq -s -R -r @uri)
 
           # Update the pull request description using GitHub API
@@ -34,3 +35,11 @@ jobs:
             -H "Accept: application/vnd.github.v3+json" \
             -d "{\"body\": \"$ESCAPED_DESCRIPTION\"}" \
             "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}"
+
+#      - name: Update PR Description
+#        uses: nefrob/pr-description@v1.1.1
+#        with:
+#          content: ${{ github.event.pull_request.number }}
+#          regex: "{PR_NUMBER}{/PR_NUMBER}"
+#          regexFlags: ims
+#          token: ${{ secrets.GH_TOKEN }}
