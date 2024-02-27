@@ -4,6 +4,12 @@
 
 - Preview: https://pr-PR_NUMBER.cleanmymac.macpaw.dev
 
+<!-- start regex match -->
+
+Anything in between these comments will be replaced by a push to the PR.
+
+<!-- end regex match -->
+
 ___
 ### 🧪 What to test
 <!-- describe changes that should be tested -->
