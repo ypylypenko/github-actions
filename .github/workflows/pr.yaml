@@ -20,4 +20,4 @@ jobs:
           content: "<!-- start regex match -->New content!<!-- end regex match -->"
           regex: "<!-- start regex match -->.*?<!-- end regex match -->"
           regexFlags: ims
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_TOKEN }}
