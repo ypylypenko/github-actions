@@ -9,8 +9,32 @@ on:
       - main
 
 jobs:
-  hello:
+  phpunit:
     runs-on: ubuntu-latest
     steps:
-      - name: Hello
-        run: echo "Hello, world!"
+      - uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, dom, curl
+          tools: composer
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
+
+      - name: Copy .env
+        run: cp .env.example .env
+
+      - name: Generate key
+        run: php artisan key:generate
+
+      - name: Directory permissions
+        run: |
+          chmod -R 777 storage
+          chmod -R 777 bootstrap/cache
+
+      - name: Run tests
+        run: php artisan test
+
