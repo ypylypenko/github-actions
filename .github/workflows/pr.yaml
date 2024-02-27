@@ -14,17 +14,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Read message from file
-        id: read-message
-        run: |
-          MESSAGE=$(cat ./.github/pull_request_template.md)
-          PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
-          echo "message=${MESSAGE}" >> $GITHUB_OUTPUT
-
       - name: Update Pull Request Description
         run: |
           PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
-          MESSAGE="${{ steps.read-message.outputs.message }}"
+          MESSAGE=$(cat ./.github/pull_request_template.md)
+          PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
+          MESSAGE="${MESSAGE_TEMPLATE/PR_NUMBER/$PR_NUMBER}"
 
           # Update pull request description using GitHub API
           curl -X PATCH \
